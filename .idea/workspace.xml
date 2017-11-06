@@ -2,60 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2085ca87-8bfc-49fd-b480-a38adc99c075" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/MalayalamSports/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/MalayalamSports/settings.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/MalayalamSports/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/MalayalamSports/wsgi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/data_seed/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/data_seed/seeding_assets/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/decorators.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/helpers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/helpers/request_validator.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/helpers/session.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/helpers/utils.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/localisation/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/localisation/constants.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/localisation/messages.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/management/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/management/commands/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/permissions/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/managers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/managers/data_managers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/managers/data_managers/relationship_manager.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/managers/model_managers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/managers/model_managers/model_managers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/serializers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/serializers/football_commentary_serializers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/serializers/football_match_serializers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/serializers/news_serializers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/serializers/sports_team_serializers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/base_service.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/common/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/common/football_match_services.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/common/live_score_services.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/common/news_services.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/mobile/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/services/web/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/admin_views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/common/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/common/common_views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/mobile/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/source/versions/v1/views/web/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/api/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/manage.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MalayalamSports/requirements.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MalayalamSports/settings.py" afterPath="$PROJECT_DIR$/MalayalamSports/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,17 +22,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1471">
-              <caret line="139" column="23" lean-forward="false" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
+            <state relative-caret-position="297">
+              <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common_views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="common_views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/source/versions/v1/views/common/common_views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -204,6 +151,11 @@
               <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
               <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
+              <item name="MalayalamSports" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -383,6 +335,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -557,18 +510,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1471">
-          <caret line="139" column="23" lean-forward="false" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/source/versions/v1/views/common/common_views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding />
         </state>
       </provider>
