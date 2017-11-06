@@ -87,6 +87,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'MalayalamSports.wsgi.application'
 
 
+# heroku database
+
+
+
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -100,6 +105,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+database_url = "postgres://uqzqokbiguyfut:948d435b031340a2cc381994f31ab7f72c5718ee224375ed483dcf410ee42dcb@ec2-50-19-105-113.compute-1.amazonaws.com:5432/d5akti0uj410b3"
+DATABASES['default'] = dj_database_url.config(default=database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -141,6 +153,18 @@ STATIC_URL = '/static/'
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
