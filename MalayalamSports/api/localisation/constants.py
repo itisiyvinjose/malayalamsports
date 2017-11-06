@@ -1,0 +1,103 @@
+
+
+# email
+FROM_EMAIL = 'support@malayalamsports.com'
+
+# status
+STATUS_SUCCESS = 20
+STATUS_INVALID_REQUEST = 40
+STATUS_SERVER_ERROR = 50
+
+NUMBER_OF_TRENDING_NEWS = 4
+
+LOGGER_NAME = 'api'
+
+# roles
+SUPER_ADMIN = 'SUPER_ADMIN'
+CLIENT_ADMIN = 'CLIENT_ADMIN'
+USER = 'USER'
+
+CURRENT_VERSION = 'v1'
+ALLOWED_VERSION = ['v1']
+
+# context
+
+UPDATE_CONTEXT = 'update'
+CREATE_CONTEXT = 'create'
+LISTING_CONTEXT = 'list'
+DETAIL_CONTEXT = 'list'
+
+# token types
+VERIFY_EMAIL_TOKEN = 'VERIFY_EMAIL'
+RESET_PASSWORD_TOKEN = 'RESET_PASSWORD'
+
+# token expiry in hour
+VERIFY_EMAIL_TOKEN_EXPIRY = 24
+RESET_PASSWORD_TOKEN_EXPIRY = 24
+
+
+LOGO_IMAGE_ALLOWED_FORMATS = [
+    "jpg",
+    "jpeg",
+    "png",
+]
+
+
+FAVICON_IMAGE_ALLOWED_FORMATS = [
+    "ico",
+    "png",
+    "gif",
+    "jepg",
+    "vnd.microsoft.icon",
+]
+
+VALID_IMAGE_MIMETYPES = [
+   	"image"
+]
+
+# response dict keys
+
+ERROR_RESPONSE_KEY_SESSION = 'session'
+RESPONSE_KEY_VERSION = 'version'
+RESPONSE_USER_AGENT = 'user_agent'
+ERROR_RESPONSE_KEY_AUTHORIZATION = 'authorization'
+ERROR_RESPONSE_KEY_REQUEST = 'request'
+ERROR_RESPONSE_KEY_MESSAGE = 'message'
+RESPONSE_DICT_RESULT_KEY = 'result'
+ERROR_RESPONSE_KEY_EXCEPTION = 'exception'
+ERROR_RESPONSE_KEY_VALIDATION = 'validation'
+ERROR_RESPONSE_KEY_FORBIDDEN = 'forbidden'
+
+ERROR_DICT_KEY_TYPE = 'error_type'
+ERROR_DICT_KEY_DISPLAY_MESSAGE = 'display_message'
+ERROR_DICT_KEY_DETAIL = 'detail'
+
+
+# account
+
+PASSWORD_MIN_LENGTH = 4
+PASSWORD_MAX_LENGTH = 30
+
+
+# enums
+
+MATCH_STATUS = (
+    ('UPCOMING', 'VERIFY_EMAIL'),
+    ('STARTED', 'RESET_PASSWORD'),
+    ('FINISHED', 'RESET_PASSWORD'),
+    ('POSTPONED', 'RESET_PASSWORD'),
+    ('DELAYED', 'RESET_PASSWORD'),
+    ('DRAW', 'RESET_PASSWORD')
+
+)
+
+CURRENT_PLAY_TIME = (
+        ('FIRST_HALF', 'VERIFY_EMAIL'),
+        ('RESET_PASSWORD', 'RESET_PASSWORD')
+    )
+
+
+SPORT_CATEGORY = (
+    ('FOOTBALL', 'VERIFY_EMAIL'),
+)
+
