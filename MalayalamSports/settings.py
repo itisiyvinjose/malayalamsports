@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'o^e$4yqitmk#^t#5gxgvbl=gs6=@io)18x81i11)p^^*bn+w3y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -38,7 +38,7 @@ CORS_ALLOW_HEADERS = (
     'page',
 )
 
-ALLOWED_HOSTS = ['malayalamsportsbackend.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -107,11 +107,11 @@ DATABASES = {
 }
 
 
-import dj_database_url
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-database_url = "postgres://uqzqokbiguyfut:948d435b031340a2cc381994f31ab7f72c5718ee224375ed483dcf410ee42dcb@ec2-50-19-105-113.compute-1.amazonaws.com:5432/d5akti0uj410b3"
-DATABASES['default'] = dj_database_url.config(default=database_url)
+# import dj_database_url
+#
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# database_url = "postgres://uqzqokbiguyfut:948d435b031340a2cc381994f31ab7f72c5718ee224375ed483dcf410ee42dcb@ec2-50-19-105-113.compute-1.amazonaws.com:5432/d5akti0uj410b3"
+# DATABASES['default'] = dj_database_url.config(default=database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -174,7 +174,3 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': []
 
 }
-
-
-
-

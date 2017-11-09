@@ -1,9 +1,12 @@
+import json
+
 import bcrypt
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
 from api.localisation.constants import *
+
 
 class BaseModel(models.Model):
     is_active = models.BooleanField(default=True)
@@ -61,12 +64,14 @@ class News(BaseModel):
     have many to many field for accessing related news
     """
     news_date = models.DateField(db_index=True)
+    news_date_time = models.DateTimeField(null=True, blank=False)
     content = models.TextField()
     source = models.CharField(max_length=200)
     title = models.TextField()
     # TODO: add images
     # TODO: generate thumbnail images
     tags = models.TextField(default="[]")
+    related_tags = models.ManyToManyField("NewsTags", blank=True, related_name='+')
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
     is_trending = models.BooleanField(default=False)
     trend_scale = models.IntegerField(null=True, blank=True)
@@ -74,6 +79,48 @@ class News(BaseModel):
     number_of_likes = models.IntegerField(default=0)
     number_of_dislikes = models.IntegerField(default=0)
     number_of_views = models.IntegerField(default=0)
+    should_display_on_home_page = models.BooleanField(default=False)
+    home_page_display_order = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+
+        def filter_new_tags(tags):
+            existing_tags = NewsTags.objects.values_list('tag_name', flat=True)
+            new_tags = list(set(tags) - set(existing_tags))
+            return new_tags
+
+        def save_new_tags(tags):
+            for tag in tags:
+                obj, created = NewsTags.objects.get_or_create(
+                    tag_name=tag
+                )
+
+                if created:
+                    print('Tag ' + tag + ' created')
+
+        def update_tags():
+            if self.tags:
+                tags = json.loads(self.tags)
+                new_tags = filter_new_tags(tags)
+                save_new_tags(new_tags)
+
+        if 'relationship_update' in kwargs:
+            relationship_update = kwargs.pop('relationship_update', None)
+            if relationship_update:
+                pass
+            else:
+                update_tags()
+
+        else:
+            update_tags()
+
+        super(News, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ('created_at',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.title)
 
 
 class NewsRelationsShip(models.Model):
@@ -84,7 +131,13 @@ class NewsRelationsShip(models.Model):
 
 
 class NewsTags(BaseModel):
-    name = models.CharField(max_length=200, unique=True)
+    tag_name = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        ordering = ('tag_name',)
+
+    def __str__(self):
+        return str(self.tag_name.capitalize())
 
 
 class SportsMatch(BaseModel):
@@ -107,6 +160,12 @@ class SportsMatch(BaseModel):
                                  blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
 
+    class Meta:
+        ordering = ('created_at',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.status)
+
 
 class Players(BaseModel):
     name = models.CharField(max_length=200)
@@ -121,6 +180,8 @@ class FootBallMatchDetails(BaseModel):
 
     match_starting_time = models.TimeField(null=True, blank=True)
     match_finishing_time = models.TimeField(null=True, blank=True)
+
+    match_title = models.TextField()
 
     status = models.CharField(choices=MATCH_STATUS, max_length=200, db_index=True)
     current_status_text = models.CharField(max_length=200, null=True, blank=True)
@@ -141,6 +202,18 @@ class FootBallMatchDetails(BaseModel):
     team_one_score = models.IntegerField(default=0)
     team_two_score = models.IntegerField(default=0)
 
+    should_show_on_home_page = models.BooleanField(default=False)
+    display_priority_scale = models.IntegerField(default=0)
+    is_kerala_blasters_involved = models.BooleanField(default=False)
+
+    series = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
+
+    class Meta:
+        ordering = ('created_at',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.match_title)
+
 
 class FootballMatchCommentary(BaseModel):
     current_play_time_status = models.CharField(choices=CURRENT_PLAY_TIME, max_length=200, null=True)
@@ -150,9 +223,27 @@ class FootballMatchCommentary(BaseModel):
     is_key_event = models.BooleanField(default=False)
 
 
-
 class SportTeam(BaseModel):
-    name = models.CharField(max_length=200)
+    display_name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
+    identifier = models.CharField(max_length=200)
     # TODO: logo
+
+    class Meta:
+        ordering = ('display_name',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.identifier)
+
+
+class MatchSeries(BaseModel):
+    display_name = models.CharField(max_length=200)
+    identifier = models.CharField(max_length=200, unique=True)
+
+
+    class Meta:
+        ordering = ('display_name',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.identifier)

@@ -1,6 +1,8 @@
+from api.helpers import utils
 from api.localisation import constants
-from api.models import News
-from api.source.versions.v1.serializers.news_serializers import NewsListSerializer
+from api.source.versions.v1.managers.data_managers import news_data_manager
+from api.source.versions.v1.managers.data_managers.relationship_manager import RelationshipManager
+from api.source.versions.v1.serializers.news_serializers import *
 from api.source.versions.v1.services.base_service import *
 
 def get_trending_news_service(request, params, user_agent):
@@ -11,10 +13,24 @@ def get_trending_news_service(request, params, user_agent):
     :param user_agent: request user agent
     :return: list of news objects
     """
-    number_of_news = constants.NUMBER_OF_TRENDING_NEWS
-    trending_news = News.objects.filter(is_active=True, is_trending=True).order_by('trend_scale')[:number_of_news]
-    data = NewsListSerializer(trending_news, many=True).data
+    data = news_data_manager.get_trending_news()
     return result(status=True, message=None, data=data, type=None)
 
-def get_news_detail_service():
-    return
+
+def get_news_detail_service(request, params, user_agent):
+    expected_params = [
+        {'name': 'news_id', 'required': True, 'type': int, 'model': News,},
+    ]
+    validation = utils.validate_request(request_params=params, expected_params=expected_params)
+    if validation.valid:
+
+        news_id = params['news_id']
+        news = News.objects.get(id=news_id)
+
+        data = NewsDetailsSerializer(news).data
+        RelationshipManager(news=news, tags=[])
+        return result(status=True, message=None, data=data, type=None)
+    else:
+        message = validation.errors
+        return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)
+

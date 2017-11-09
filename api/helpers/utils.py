@@ -5,6 +5,7 @@ from django.conf import settings
 from pkg_resources._vendor.appdirs import unicode
 
 from api.localisation import constants
+from api.models import NewsTags
 
 result = collections.namedtuple('Result', ['valid', 'errors'])
 
@@ -18,7 +19,7 @@ def development_mode():
     return settings.DEBUG
 
 
-def validate_request(params, data, user):
+def validate_request(expected_params, request_params):
     class Context:
         missing_fields = None
         type_errors = []
@@ -41,12 +42,12 @@ def validate_request(params, data, user):
         type = field['type'] if 'type' in field else None
         model = field['model'] if 'model' in field else None
 
-        if name in data and field['type'] == str and isinstance(data[name], unicode):
-            data[name] = data[name].encode('ascii', 'replace')
+        if name in request_params and field['type'] == str and isinstance(request_params[name], unicode):
+            request_params[name] = request_params[name].encode('ascii', 'replace')
 
         field_errors = []
 
-        if name not in data:
+        if name not in request_params:
 
             if not required:
                 return
@@ -55,20 +56,20 @@ def validate_request(params, data, user):
             add_field_error(name, field_errors)
             return
 
-        elif type is not bool and required and not data[name]:
+        elif type is not bool and required and not request_params[name]:
 
-            if data[name] != 0:
+            if request_params[name] != 0:
                 field_errors.append('This field value is required.')
                 add_field_error(name, field_errors)
                 return
 
-        elif not isinstance(data[name], type):
+        elif not isinstance(request_params[name], type):
 
-            if isinstance(data[name], unicode):
-                variable_type = str(data[name].encode('ascii', 'replace').__class__.__name__)
+            if isinstance(request_params[name], unicode):
+                variable_type = str(request_params[name].encode('ascii', 'replace').__class__.__name__)
 
             else:
-                variable_type = str(Context.type_mapping[data[name].__class__])
+                variable_type = str(Context.type_mapping[request_params[name].__class__])
 
             field_errors.append('Expected type ' + Context.type_mapping[type] + ' but got type ' + variable_type)
             add_field_error(name, field_errors)
@@ -76,14 +77,14 @@ def validate_request(params, data, user):
         elif model and type != list:
             try:
 
-                model.objects.get(id=data[name], is_active=True)
+                model.objects.get(id=request_params[name], is_active=True)
 
             except model.DoesNotExist:
                 model_name = model.__name__
-                field_errors.append(model_name + ' with id ' + str(data[name]) + ' does not exists')
+                field_errors.append(model_name + ' with id ' + str(request_params[name]) + ' does not exists')
                 add_field_error(name, field_errors)
 
-    for field in params:
+    for field in expected_params:
         validate_field(field)
 
     if bool(Context.errors):
@@ -120,7 +121,11 @@ def log_request_exception(request, params, exception, traceback):
     exception_message = "\nException::"
     exception_message += "Request::" + str(request.get_full_path()) + ", METHOD::" + request.method
     exception_message += ",\n params=" + json.dumps(params)
-    exception_message += ",\n exception=" + str(exception.message)
+    exception_message += ",\n exception=" + str(exception)
     exception_message += ",\n traceback=" + str(traceback)
     log = logging.getLogger(constants.LOGGER_NAME)
     log.exception(exception_message)
+
+
+
+

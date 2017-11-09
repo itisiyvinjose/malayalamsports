@@ -4,12 +4,17 @@ from api.models import News, NewsRelationsShip
 
 class RelationshipManager(object):
 
-    def __init__(self):
-        self.news = None
-        self.tags = None
+    def __init__(self, news, tags):
+        self.news = news
+        self.tags = [tag.lower for tag in tags]
         self.related_news = dict()
+        self.news.save(relationship_update=True)
 
-    def find_related_news(self):
+    def find_and_update_news_relationship(self):
+        self.__find_related_news()
+        self.__update_relationship()
+
+    def __find_related_news(self):
         print('finding related news')
         all_news = News.objects.all()
         related_news_count = 0
@@ -18,6 +23,7 @@ class RelationshipManager(object):
 
             if news.tags:
                 current_news_tags = json.loads(news.tags)
+                current_news_tags = [tag.lower for tag in current_news_tags]
                 common_tags = list( set(self.tags) & set(current_news_tags) )
 
                 if len(common_tags) > 0:
@@ -33,7 +39,7 @@ class RelationshipManager(object):
 
         print('found ' + str(related_news_count) + 'related news')
 
-    def update_relationship(self):
+    def __update_relationship(self):
         print('\nupdating relationships')
         # remove existing
         NewsRelationsShip.objects.filter(news__id=self.news.id).delete()

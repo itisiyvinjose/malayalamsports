@@ -11,6 +11,14 @@ MESSAGE_REQUEST_PARAMS_MISSING = 'Request params missing from the request'
 MESSAGE_INCORRECT_LOGIN = 'Invalid email or password'
 
 # trending news
-
 TRENDING_NEWS_FETCH_SUCCESS = 'Trending news fetched successfully'
 TRENDING_NEWS_FETCH_FAILURE = 'Failed to fetch trending news'
+
+# home page contents
+HOME_PAGE_FETCH_SUCCESS = 'Home page contents fetched successfully'
+HOME_PAGE_FETCH_FAILURE = 'Failed to fetch home page contents'
+
+
+# news details api
+NEWS_DETAILS_FETCH_SUCCESS = 'News details api fetched successfully'
+NEWS_DETAILS_FETCH_FAILURE = 'Failed to fetch news details'
