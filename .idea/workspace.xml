@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2085ca87-8bfc-49fd-b480-a38adc99c075" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/signals.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/football_match_data_manager.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/news_data_manager.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/source/versions/v1/services/common/home_page_services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MalayalamSports/settings.py" afterPath="$PROJECT_DIR$/MalayalamSports/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/admin.py" afterPath="$PROJECT_DIR$/api/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/apps.py" afterPath="$PROJECT_DIR$/api/apps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/helpers/utils.py" afterPath="$PROJECT_DIR$/api/helpers/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/localisation/constants.py" afterPath="$PROJECT_DIR$/api/localisation/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/localisation/messages.py" afterPath="$PROJECT_DIR$/api/localisation/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.py" afterPath="$PROJECT_DIR$/api/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/relationship_manager.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/relationship_manager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/services/common/news_services.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/services/common/news_services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/urls.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/views/common/common_views.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/views/common/common_views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,14 +22,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="157">
-              <caret line="108" column="35" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="108" selection-end-column="35" />
+              <caret line="108" column="35" lean-forward="false" selection-start-line="106" selection-start-column="8" selection-end-line="108" selection-end-column="35" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="109" column="10" lean-forward="false" selection-start-line="109" selection-start-column="10" selection-end-line="113" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/api/signals.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="39" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
+              <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -66,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/api/apps.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -98,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/api/localisation/constants.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="99" column="36" lean-forward="true" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
+              <caret line="99" column="36" lean-forward="false" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -123,18 +117,6 @@
               <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news_data_manager.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/news_data_manager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="39" column="15" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,7 +180,6 @@
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/live_score_services.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/football_match_data_manager.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/home_page_services.py" />
-        <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/urls.py" />
         <option value="$PROJECT_DIR$/api/localisation/messages.py" />
         <option value="$PROJECT_DIR$/api/admin.py" />
@@ -211,6 +192,7 @@
         <option value="$PROJECT_DIR$/api/models.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/managers/data_managers/relationship_manager.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/news_services.py" />
+        <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
       </list>
     </option>
   </component>
@@ -475,7 +457,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6694678" sideWeight="0.4974359" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39915967" sideWeight="0.4974359" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39915967" sideWeight="0.4974359" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -710,14 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/news_serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -795,7 +769,7 @@
     <entry file="file://$PROJECT_DIR$/api/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -805,7 +779,7 @@
     <entry file="file://$PROJECT_DIR$/api/localisation/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="99" column="36" lean-forward="true" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
+          <caret line="99" column="36" lean-forward="false" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -849,7 +823,7 @@
     <entry file="file://$PROJECT_DIR$/api/signals.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="39" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
@@ -859,10 +833,18 @@
     <entry file="file://$PROJECT_DIR$/api/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
-          <caret line="108" column="35" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="108" selection-end-column="35" />
+          <caret line="108" column="35" lean-forward="false" selection-start-line="106" selection-start-column="8" selection-end-line="108" selection-end-column="35" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="109" column="10" lean-forward="false" selection-start-line="109" selection-start-column="10" selection-end-line="113" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
