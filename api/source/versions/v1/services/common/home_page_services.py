@@ -1,6 +1,5 @@
 from api.source.versions.v1.managers.data_managers import news_data_manager
 from api.source.versions.v1.managers.data_managers import football_match_data_manager
-
 from api.source.versions.v1.services.base_service import *
 
 

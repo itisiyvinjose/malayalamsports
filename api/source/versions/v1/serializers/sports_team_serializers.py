@@ -6,11 +6,11 @@ class SportsTeamDetailsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = SportsTeam
-        fields = ('id', 'name')
+        fields = ('id', 'display_name')
 
 
 class SportsTeamListSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = SportsTeam
-        fields = ('id', 'name')
+        fields = ('id', 'display_name')

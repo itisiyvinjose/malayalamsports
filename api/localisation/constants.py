@@ -1,5 +1,3 @@
-
-
 # email
 FROM_EMAIL = 'support@malayalamsports.com'
 
@@ -37,13 +35,11 @@ RESET_PASSWORD_TOKEN = 'RESET_PASSWORD'
 VERIFY_EMAIL_TOKEN_EXPIRY = 24
 RESET_PASSWORD_TOKEN_EXPIRY = 24
 
-
 LOGO_IMAGE_ALLOWED_FORMATS = [
     "jpg",
     "jpeg",
     "png",
 ]
-
 
 FAVICON_IMAGE_ALLOWED_FORMATS = [
     "ico",
@@ -54,7 +50,7 @@ FAVICON_IMAGE_ALLOWED_FORMATS = [
 ]
 
 VALID_IMAGE_MIMETYPES = [
-   	"image"
+    "image"
 ]
 
 # response dict keys
@@ -74,12 +70,10 @@ ERROR_DICT_KEY_TYPE = 'error_type'
 ERROR_DICT_KEY_DISPLAY_MESSAGE = 'display_message'
 ERROR_DICT_KEY_DETAIL = 'detail'
 
-
 # account
 
 PASSWORD_MIN_LENGTH = 4
 PASSWORD_MAX_LENGTH = 30
-
 
 # enums
 
@@ -102,18 +96,24 @@ MATCH_STATUS_DELAYED = 'DELAYED'
 MATCH_STATUS_DRAW = 'DRAW'
 
 CURRENT_PLAY_TIME = (
-        ('FIRST_HALF', 'VERIFY_EMAIL'),
-        ('RESET_PASSWORD', 'RESET_PASSWORD')
-    )
-
+    ('FIRST_HALF', 'FIRST_HALF'),
+    ('SECOND_HALF', 'FIRST_HALF'),
+    ('EXTRA_TIME', 'EXTRA TIME'),
+    ('INJURY_TIME', 'INJURY_TIME'),
+)
 
 SPORT_CATEGORY = (
     ('FOOTBALL', 'FOOTBALL'),
 )
 
-SPORTS_FOOTBALL = 'FOOTBALL'
+PLAYER_ROLES = (
+    ('CAPTAIN', 'CAPTAIN'),
+    ('VICE_CAPTAIN', 'VICE_CAPTION'),
+    ('GOAL_KEEPER', 'GOAL_KEEPER'),
+    ('NORMAL', 'NORMAL'),
+)
 
+SPORTS_FOOTBALL = 'FOOTBALL'
 
 # kerala blasters
 KERLA_BLASTERS_TEAM_IDENTIFIER = 'KERALA_BLASTERS'
-

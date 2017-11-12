@@ -13,6 +13,9 @@ class BaseModel(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
+
 
 class Admin(BaseModel):
     """
@@ -64,7 +67,6 @@ class News(BaseModel):
     have many to many field for accessing related news
     """
     news_date = models.DateField(db_index=True)
-    news_date_time = models.DateTimeField(null=True, blank=False)
     content = models.TextField()
     source = models.CharField(max_length=200)
     title = models.TextField()
@@ -72,44 +74,39 @@ class News(BaseModel):
     # TODO: generate thumbnail images
     # tags = models.TextField(default="[]")
     related_tags = models.ManyToManyField("NewsTag", blank=True, related_name='+')
+    news_tags = models.TextField(blank=True, null=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
     is_trending = models.BooleanField(default=False)
-    trend_scale = models.IntegerField(null=True, blank=True)
+    trend_scale = models.IntegerField(default=0)
     related_news = models.ManyToManyField("self", blank=True, through='NewsRelationsShip', symmetrical=False, related_name='+')
     number_of_likes = models.IntegerField(default=0)
     number_of_dislikes = models.IntegerField(default=0)
     number_of_views = models.IntegerField(default=0)
-    should_display_on_home_page = models.BooleanField(default=False)
-    home_page_display_order = models.IntegerField(default=0)
+    display_order = models.IntegerField(default=0)
 
-    # def save(self, *args, **kwargs):
-    #
-    #     def filter_new_tags():
-    #         new_tags = list()
-    #
-    #         if len(self.related_tags) > 0:
-    #             all_tags = [tag.tag_name for tag in NewsTags.objects.all()]
-    #             existing_tags = [tag.tag_name for tag in self.related_tags.all()]
-    #             new_tags = list(set(all_tags) - set(existing_tags))
-    #
-    #         return new_tags
-    #
-    #     def save_new_tags(tags):
-    #         for tag in tags:
-    #             obj, created = NewsTags.objects.get_or_create(
-    #                 tag_name=tag
-    #             )
-    #
-    #             if created:
-    #                 print('Tag ' + tag + ' created')
-    #
-    #     def update_tags():
-    #         if len(self.related_tags) > 0:
-    #             new_tags = filter_new_tags()
-    #             save_new_tags(new_tags)
-    #
-    #     # update_tags()
-    #     super(News, self).save(*args, **kwargs)
+    class Meta:
+        ordering = ('created_at',)
+
+    def __str__(self):
+        return str(self.id) + str(" ") + str(self.title)
+
+
+class GuestNews(BaseModel):
+    """
+    sport news model
+    have many to many field for accessing related news
+    """
+    news_date = models.DateField(db_index=True)
+    content = models.TextField()
+    source = models.CharField(max_length=200)
+    title = models.TextField()
+    # TODO: add images
+    # TODO: generate thumbnail images
+    sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
+    number_of_likes = models.IntegerField(default=0)
+    number_of_dislikes = models.IntegerField(default=0)
+    display_order = models.IntegerField(default=0)
+    is_admin_approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('created_at',)
@@ -177,6 +174,15 @@ class Player(BaseModel):
     # TODO: image
 
 
+class MatchPlayer(BaseModel):
+    match = models.ForeignKey("FootBallMatchDetails", on_delete=models.CASCADE, related_name='players')
+    name = models.CharField(max_length=200)
+    jersey_number = models.IntegerField(blank=True, null=True)
+    player_role = models.CharField(choices=PLAYER_ROLES, max_length=200, default='NORMAL')
+    position = models.CharField(max_length=200, blank=True, null=True)
+    order = models.IntegerField(default=0)
+
+
 class FootBallMatchDetails(BaseModel):
     match_starting_date = models.DateField(null=True, blank=True, db_index=True)
     match_finishing_date = models.DateField(null=True, blank=True)
@@ -184,12 +190,12 @@ class FootBallMatchDetails(BaseModel):
     match_starting_time = models.TimeField(null=True, blank=True)
     match_finishing_time = models.TimeField(null=True, blank=True)
 
-    match_title = models.TextField()
-
-    status = models.CharField(choices=MATCH_STATUS, max_length=200, db_index=True)
-    current_status_text = models.CharField(max_length=200, null=True, blank=True)
+    match_status = models.CharField(choices=MATCH_STATUS, max_length=200, db_index=True)
+    match_status_text = models.CharField(max_length=200, null=True, blank=True)
     match_facts = models.TextField(null=True, blank=True)
     match_description = models.TextField(null=True, blank=True)
+    match_series = models.ForeignKey("MatchSeries", on_delete=models.CASCADE, related_name='matches', )
+
     venue = models.TextField()
     postponed_date = models.DateField(null=True, blank=True)
     postponed_time = models.TimeField(null=True, blank=True)
@@ -210,13 +216,14 @@ class FootBallMatchDetails(BaseModel):
         ordering = ('created_at',)
 
     def __str__(self):
-        return str(self.id) + str(" ") + str(self.match_title)
+        return str(self.id) + str(" ") + str(self.series.display_name)
 
 
 class FootballMatchCommentary(BaseModel):
-    current_play_time_status = models.CharField(choices=CURRENT_PLAY_TIME, max_length=200, null=True)
-    added_time = models.CharField(max_length=200, null=True, blank=True)
-    comment = models.TextField()
+    current_play_time_status = models.CharField(choices=CURRENT_PLAY_TIME, max_length=200, null=True, blank=True)
+    # added_time = models.CharField(max_length=200, null=True, blank=True)
+    commentary_heading = models.TextField(blank=True, null=True)
+    commentary_content = models.TextField()
     football_match = models.ForeignKey("FootBallMatchDetails", on_delete=models.CASCADE, related_name='commentaries')
     is_key_event = models.BooleanField(default=False)
 
@@ -241,6 +248,7 @@ class MatchSeries(BaseModel):
     country = models.CharField(max_length=200, null=True, blank=True)
     starting_date = models.DateField(null=True, blank=True)
     ending_date = models.DateField(null=True, blank=True)
+    sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
 
 
     class Meta:

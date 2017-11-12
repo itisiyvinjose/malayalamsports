@@ -1,5 +1,4 @@
 import json
-import os
 from api.localisation import constants
 from api.models import SportsTeam
 
@@ -12,12 +11,10 @@ def seed_data():
     seed isl teams data from file
     :return:
     """
-    os.system('pwd')
     with open(file_name) as fp:
         contents_of_file = json.load(fp)
 
         for team in contents_of_file:
-
             team_identifier = team['team_identifier']
             display_name = team['display_name']
 
@@ -30,5 +27,4 @@ def seed_data():
 
 
 
-    # print('\nISL team data seed  completed')
-
+            # print('\nISL team data seed  completed')

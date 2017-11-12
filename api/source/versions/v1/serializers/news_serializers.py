@@ -3,6 +3,15 @@ from rest_framework import serializers
 from api.models import News, NewsRelationsShip
 
 
+class NewsSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = News
+        fields = ('id', 'news_date', 'content', 'source', 'title', 'sport', 'is_trending', 'trend_scale', 'display_order', 'news_tags')
+
+
+
+
 class NewsDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -23,6 +32,7 @@ class NewsDetailsSerializer(serializers.ModelSerializer):
             'content': instance.content,
             'source': instance.source,
             'title': instance.title,
+            'sport': instance.sport,
             'related_news': self.get_related_news(instance)
         }
         return representation

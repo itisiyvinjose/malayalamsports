@@ -1,4 +1,5 @@
 import collections
+import datetime
 import json
 import logging
 from django.conf import settings
@@ -125,6 +126,16 @@ def log_request_exception(request, params, exception, traceback):
     exception_message += ",\n traceback=" + str(traceback)
     log = logging.getLogger(constants.LOGGER_NAME)
     log.exception(exception_message)
+
+
+def validate_date(date):
+    today = datetime.date.today()
+    if date >= today:
+        return True
+    return False
+
+def validate_time(time):
+    current_time = datetime.datetime.now().time()
 
 
 
