@@ -2,10 +2,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from api.models import  News
+from api.source.versions.v1.managers.data_managers.relationship_manager import RelationshipManager
 
 
 @receiver(post_save, sender=News)
 def post_save_news(sender, created, instance, **kwargs):
 
-    # if newly created client, then add all super admins as users and admins to the client
-    return
+    print('finding and updating news relationship')
+    RelationshipManager(news=instance).find_and_update_news_relationship()
+

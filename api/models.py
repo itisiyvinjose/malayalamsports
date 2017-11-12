@@ -70,8 +70,8 @@ class News(BaseModel):
     title = models.TextField()
     # TODO: add images
     # TODO: generate thumbnail images
-    tags = models.TextField(default="[]")
-    related_tags = models.ManyToManyField("NewsTags", blank=True, related_name='+')
+    # tags = models.TextField(default="[]")
+    related_tags = models.ManyToManyField("NewsTag", blank=True, related_name='+')
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
     is_trending = models.BooleanField(default=False)
     trend_scale = models.IntegerField(null=True, blank=True)
@@ -82,39 +82,34 @@ class News(BaseModel):
     should_display_on_home_page = models.BooleanField(default=False)
     home_page_display_order = models.IntegerField(default=0)
 
-    def save(self, *args, **kwargs):
-
-        def filter_new_tags(tags):
-            existing_tags = NewsTags.objects.values_list('tag_name', flat=True)
-            new_tags = list(set(tags) - set(existing_tags))
-            return new_tags
-
-        def save_new_tags(tags):
-            for tag in tags:
-                obj, created = NewsTags.objects.get_or_create(
-                    tag_name=tag
-                )
-
-                if created:
-                    print('Tag ' + tag + ' created')
-
-        def update_tags():
-            if self.tags:
-                tags = json.loads(self.tags)
-                new_tags = filter_new_tags(tags)
-                save_new_tags(new_tags)
-
-        if 'relationship_update' in kwargs:
-            relationship_update = kwargs.pop('relationship_update', None)
-            if relationship_update:
-                pass
-            else:
-                update_tags()
-
-        else:
-            update_tags()
-
-        super(News, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #
+    #     def filter_new_tags():
+    #         new_tags = list()
+    #
+    #         if len(self.related_tags) > 0:
+    #             all_tags = [tag.tag_name for tag in NewsTags.objects.all()]
+    #             existing_tags = [tag.tag_name for tag in self.related_tags.all()]
+    #             new_tags = list(set(all_tags) - set(existing_tags))
+    #
+    #         return new_tags
+    #
+    #     def save_new_tags(tags):
+    #         for tag in tags:
+    #             obj, created = NewsTags.objects.get_or_create(
+    #                 tag_name=tag
+    #             )
+    #
+    #             if created:
+    #                 print('Tag ' + tag + ' created')
+    #
+    #     def update_tags():
+    #         if len(self.related_tags) > 0:
+    #             new_tags = filter_new_tags()
+    #             save_new_tags(new_tags)
+    #
+    #     # update_tags()
+    #     super(News, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('created_at',)
@@ -129,15 +124,23 @@ class NewsRelationsShip(models.Model):
     relation_index = models.IntegerField(default=0)
     common_tags = models.TextField(default='[]')
 
+    class Meta:
+        unique_together = ("news", "related_news")
 
-class NewsTags(BaseModel):
+
+class NewsTag(BaseModel):
     tag_name = models.CharField(max_length=200, unique=True)
 
     class Meta:
         ordering = ('tag_name',)
 
     def __str__(self):
-        return str(self.tag_name.capitalize())
+        return str(self.tag_name.lower())
+
+
+    def save(self, *args, **kwargs):
+        self.tag_name = self.tag_name.lower()
+        super(NewsTag, self).save(*args, **kwargs)
 
 
 class SportsMatch(BaseModel):
@@ -154,9 +157,9 @@ class SportsMatch(BaseModel):
     postponed_time = models.TimeField()
     concise_summary_text = models.TextField()
 
-    team_one = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+')
-    team_two = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+')
-    team_won = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+', null=True,
+    team_one = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+')
+    team_two = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+')
+    team_won = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+', null=True,
                                  blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
 
@@ -167,7 +170,7 @@ class SportsMatch(BaseModel):
         return str(self.id) + str(" ") + str(self.status)
 
 
-class Players(BaseModel):
+class Player(BaseModel):
     name = models.CharField(max_length=200)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
     biography = models.TextField()
@@ -190,23 +193,18 @@ class FootBallMatchDetails(BaseModel):
     venue = models.TextField()
     postponed_date = models.DateField(null=True, blank=True)
     postponed_time = models.TimeField(null=True, blank=True)
-    concise_summary_text = models.TextField(null=True, blank=True)
-    current_play_time_status = models.CharField(choices=CURRENT_PLAY_TIME, max_length=200, null=True)
 
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
 
-    team_one = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+',)
-    team_two = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+',)
-    team_won = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='+', null=True,
+    team_one = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+', )
+    team_two = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+', )
+    team_won = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='+', null=True,
                                  blank=True)
     team_one_score = models.IntegerField(default=0)
     team_two_score = models.IntegerField(default=0)
 
     should_show_on_home_page = models.BooleanField(default=False)
-    display_priority_scale = models.IntegerField(default=0)
-    is_kerala_blasters_involved = models.BooleanField(default=False)
-
-    series = models.ForeignKey("SportTeam", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
+    series = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
 
     class Meta:
         ordering = ('created_at',)
@@ -223,23 +221,26 @@ class FootballMatchCommentary(BaseModel):
     is_key_event = models.BooleanField(default=False)
 
 
-class SportTeam(BaseModel):
+class SportsTeam(BaseModel):
     display_name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
-    identifier = models.CharField(max_length=200)
+    team_identifier = models.CharField(max_length=200)
     # TODO: logo
 
     class Meta:
         ordering = ('display_name',)
 
     def __str__(self):
-        return str(self.id) + str(" ") + str(self.identifier)
+        return str(self.id) + str(" ") + str(self.team_identifier)
 
 
 class MatchSeries(BaseModel):
     display_name = models.CharField(max_length=200)
     identifier = models.CharField(max_length=200, unique=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
+    starting_date = models.DateField(null=True, blank=True)
+    ending_date = models.DateField(null=True, blank=True)
 
 
     class Meta:

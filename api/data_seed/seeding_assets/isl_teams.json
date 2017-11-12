@@ -1,0 +1,52 @@
+[
+    {
+        "team_identifier": "Chennaiyin FC",
+        "logo": "",
+        "display_name": "Chennaiyin FC"
+    },
+    {
+        "team_identifier": "Kerala Blasters FC",
+        "logo": "",
+        "display_name": "Kerala Blasters FC"
+    },
+    {
+        "team_identifier": "Delhi Dynamos FC",
+        "logo": "",
+        "display_name": "Delhi Dynamos FC"
+    },
+    {
+        "team_identifier": "FC Pune City",
+        "logo": "",
+        "display_name": "FC Pune City"
+    },
+    {
+        "team_identifier": "Mumbai City FC",
+        "logo": "",
+        "display_name": "Mumbai City FC"
+    },
+    {
+        "team_identifier": "NorthEast United",
+        "logo": "",
+        "display_name": "NorthEast United"
+    },
+    {
+        "team_identifier": "Atletico de Kolkata",
+        "logo": "",
+        "display_name": "Atletico de Kolkata"
+    },
+    {
+        "team_identifier": "FC Goa",
+        "logo": "",
+        "display_name": "FC Goa"
+    },
+    {
+        "team_identifier": "Bengaluru FC",
+        "logo": "",
+        "display_name": "Bengaluru FC"
+    },
+    {
+        "team_identifier": "Jamshedpur",
+        "logo": "",
+        "display_name": "Jamshedpur"
+    }
+]

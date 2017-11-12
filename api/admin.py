@@ -4,9 +4,9 @@ from api.models import *
 
 admin.site.register(News)
 admin.site.register(MatchSeries)
-admin.site.register(SportTeam)
-admin.site.register(Players)
-admin.site.register(NewsTags)
+admin.site.register(SportsTeam)
+admin.site.register(Player)
+admin.site.register(NewsTag)
 
 
 # Register your models here.

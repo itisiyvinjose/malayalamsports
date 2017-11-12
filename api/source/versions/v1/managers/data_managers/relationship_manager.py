@@ -4,11 +4,10 @@ from api.models import News, NewsRelationsShip
 
 class RelationshipManager(object):
 
-    def __init__(self, news, tags):
+    def __init__(self, news):
         self.news = news
-        self.tags = [tag.lower for tag in tags]
+        self.tags = [tag.tag_name.lower() for tag in self.news.related_tags.all()]
         self.related_news = dict()
-        self.news.save(relationship_update=True)
 
     def find_and_update_news_relationship(self):
         self.__find_related_news()
@@ -16,14 +15,14 @@ class RelationshipManager(object):
 
     def __find_related_news(self):
         print('finding related news')
-        all_news = News.objects.all()
+        all_news = News.objects.exclude(id=self.news.id).all()
         related_news_count = 0
 
         for news in all_news:
 
-            if news.tags:
-                current_news_tags = json.loads(news.tags)
-                current_news_tags = [tag.lower for tag in current_news_tags]
+            if len(news.related_tags.all()) > 0:
+                current_news_tags = [tag.tag_name.lower() for tag in news.related_tags.all()]
+                current_news_tags = [tag for tag in current_news_tags]
                 common_tags = list( set(self.tags) & set(current_news_tags) )
 
                 if len(common_tags) > 0:
@@ -37,7 +36,7 @@ class RelationshipManager(object):
                     # counter
                     related_news_count += 1
 
-        print('found ' + str(related_news_count) + 'related news')
+        print('found ' + str(related_news_count) + ' related news')
 
     def __update_relationship(self):
         print('\nupdating relationships')
@@ -55,3 +54,11 @@ class RelationshipManager(object):
             relationship.relation_index = len(tags)
             relationship.common_tags = tags_string
             relationship.save()
+
+            # reverse relationship
+            reverse_relationship = NewsRelationsShip()
+            reverse_relationship.news_id = related_news_id
+            reverse_relationship.related_news_id = self.news.id
+            reverse_relationship.relation_index = len(tags)
+            reverse_relationship.common_tags = tags_string
+            reverse_relationship.save()

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import serializers
 from api.models import News, NewsRelationsShip
 
@@ -10,8 +11,8 @@ class NewsDetailsSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_related_news(instance):
-        related_news = NewsRelationsShip.objects.filter(news=instance)
-        ordered_list = list(related_news)
+        related_news = NewsRelationsShip.objects.filter(news=instance).order_by('-relation_index').distinct()[:5]
+        ordered_list = [relationship.related_news for relationship in related_news]
         # TODO: sort by relation_index
         return NewsListSerializer(ordered_list, many=True).data
 
@@ -31,4 +32,4 @@ class NewsListSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = News
-        fields = ('id', 'news_date', 'content', 'source', 'title', 'thumbnail')
+        fields = ('id', 'news_date', 'content', 'source', 'title')

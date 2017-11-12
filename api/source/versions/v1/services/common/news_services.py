@@ -28,7 +28,6 @@ def get_news_detail_service(request, params, user_agent):
         news = News.objects.get(id=news_id)
 
         data = NewsDetailsSerializer(news).data
-        RelationshipManager(news=news, tags=[])
         return result(status=True, message=None, data=data, type=None)
     else:
         message = validation.errors

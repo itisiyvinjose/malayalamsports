@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from api.models import SportTeam
+from api.models import SportsTeam
 
 
 class SportsTeamDetailsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = SportTeam
+        model = SportsTeam
         fields = ('id', 'name')
 
 
 class SportsTeamListSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = SportTeam
+        model = SportsTeam
         fields = ('id', 'name')

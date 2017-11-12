@@ -5,7 +5,7 @@ from django.conf import settings
 from pkg_resources._vendor.appdirs import unicode
 
 from api.localisation import constants
-from api.models import NewsTags
+from api.models import NewsTag
 
 result = collections.namedtuple('Result', ['valid', 'errors'])
 
