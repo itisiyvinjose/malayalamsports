@@ -15,7 +15,7 @@ class FootballMatchPlayerSerializer(serializers.ModelSerializer):
         if FootBallMatchDetails.objects.filter(is_active=True, id=match_id).exists():
             return match_id
         else:
-            raise serializers.ValidationError('Match with id ' + match_id + ' does not exists')
+            raise serializers.ValidationError('Match with id ' + str(match_id) + ' does not exists')
 
     def create(self, validated_data):
         instance = MatchPlayer()

@@ -32,7 +32,7 @@ def update_guest_news_service(request, params, user_agent):
     :return: list of news objects
     """
     expected_params = [
-        {'name': 'news_id', 'required': True, 'type': int, 'model': News, },
+        {'name': 'news_id', 'required': True, 'type': int, 'model': GuestNews, },
     ]
     validation = utils.validate_request(request_params=params, expected_params=expected_params)
     if validation.valid:
@@ -117,7 +117,7 @@ def get_guest_news_details_service(request, params, user_agent):
     :return: list of news objects
     """
     expected_params = [
-        {'name': 'news_id', 'required': True, 'type': int, 'model': News, },
+        {'name': 'news_id', 'required': True, 'type': int, 'model': GuestNews, },
     ]
     validation = utils.validate_request(request_params=params, expected_params=expected_params)
     if validation.valid:
