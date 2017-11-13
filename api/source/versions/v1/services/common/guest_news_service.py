@@ -93,9 +93,15 @@ def list_guest_news_service(request, params, user_agent):
         offset = params['offset']
         limit = params['limit']
 
-        news = GuestNews.objects.filter(is_active=True).order_by('-display_order')[offset:limit]
+        news = GuestNews.objects.filter(is_active=True).order_by('-created_at')[offset:limit]
+        total_count = GuestNews.objects.filter(is_active=True).count()
         data = GuestNewsListSerializer(news, many=True).data
-        return result(status=True, message=None, data=data, type=None)
+        response = {
+            "content" : data,
+            "total_count": total_count
+        }
+
+        return result(status=True, message=None, data=response, type=None)
 
     else:
         message = validation.errors

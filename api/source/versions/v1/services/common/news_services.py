@@ -94,7 +94,12 @@ def list_news_service(request, params, user_agent):
 
         news = News.objects.filter(is_active=True).order_by('-display_order')[offset:limit]
         data = NewsListSerializer(news, many=True).data
-        return result(status=True, message=None, data=data, type=None)
+        total_count = News.objects.filter(is_active=True).count()
+        response = {
+            "content": data,
+            "total_count": total_count
+        }
+        return result(status=True, message=None, data=response, type=None)
 
     else:
         message = validation.errors

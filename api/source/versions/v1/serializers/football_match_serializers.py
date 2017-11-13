@@ -219,7 +219,13 @@ class FootBallMatchLiveScoreCommentaryDetailsSerializer(serializers.ModelSeriali
     @staticmethod
     def get_live_comments(instance):
         commentaries = instance.commentaries.all().order_by('-created_at')[0:10]
-        return FootballMatchCommentaryDetailsSerializer(commentaries, many=True).data
+        data =  FootballMatchCommentaryDetailsSerializer(commentaries, many=True).data
+        total_count = instance.commentaries.all().count()
+        response = {
+            "content": data,
+            "total_count": total_count
+        }
+        return response
 
 
     def to_representation(self, instance):

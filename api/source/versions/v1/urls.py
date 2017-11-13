@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^news/delete/$', delete_news, name='delete_news'),
     url(r'^news/details/$', get_news_details, name='get_news_details'),
     url(r'^news/trending/list/$', get_trending_news, name='get_trending_news'),
-    url(r'^news/details/$', get_news_details, name='get_news_details'),
+    url(r'^news/list/$', get_all_news, name='get_all_news'),
 
     url(r'^guest/news/create/$', add_guest_news, name='add_guest_news'),
     url(r'^guest/news/update/$', update_guest_news, name='update_guest_news'),

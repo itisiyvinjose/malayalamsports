@@ -302,7 +302,12 @@ def list_football_match_commentary_service(request, params, user_agent):
         commentaries = FootballMatchCommentary.objects.filter(is_active=True, football_match_id=match_id).order_by(
             '-created_at')[offset:limit]
         data = FootballMatchCommentaryDetailsSerializer(commentaries, many=True).data
-        return result(status=True, message=None, data=data, type=None)
+        total_count = FootballMatchCommentary.objects.filter(is_active=True, football_match_id=match_id).count()
+        response = {
+            "content": data,
+            "total_count": total_count
+        }
+        return result(status=True, message=None, data=response, type=None)
 
     else:
         message = validation.errors
