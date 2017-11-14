@@ -8,7 +8,7 @@ from api.source.versions.v1.managers.data_managers.relationship_manager import R
 @receiver(post_save, sender=News)
 def post_save_news(sender, created, instance, **kwargs):
 
-    print('finding and updating news relationship')
+    # print('finding and updating news relationship')
     if instance.news_tags and len(instance.news_tags) > 0:
         RelationshipManager(news=instance).find_and_update_news_relationship()
 

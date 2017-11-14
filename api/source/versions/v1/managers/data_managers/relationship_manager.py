@@ -85,7 +85,7 @@ class RelationshipManager(object):
 
     def __find_related_news(self):
 
-        print('finding related news')
+        # print('finding related news')
         all_news = News.objects.exclude(id=self.news.id).all()
         related_news_count = 0
 
@@ -106,11 +106,11 @@ class RelationshipManager(object):
                     # counter
                     related_news_count += 1
 
-        print('found ' + str(related_news_count) + ' related news')
+        # print('found ' + str(related_news_count) + ' related news')
 
     def __update_relationship(self):
 
-        print('\nupdating relationships')
+        # print('\nupdating relationships')
         # remove existing
         NewsRelationsShip.objects.filter(news__id=self.news.id).delete()
         for related_news_id in self.related_news:
@@ -135,5 +135,5 @@ class RelationshipManager(object):
                 reverse_relationship.common_tags = tags_string
                 reverse_relationship.save()
 
-        print('\n updated relationship')
+        # print('\n updated relationship')
 

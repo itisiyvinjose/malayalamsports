@@ -58,8 +58,22 @@ class Admin(BaseModel):
         if bcrypt.checkpw(raw_password.encode('utf8'), self.password.encode('utf8')):
             return True
         else:
-            return False
 
+            return False
+def get_current_datetime_info():
+    import datetime
+    now = datetime.datetime.now()
+    datetime_string = str(now.year) + str(now.month) + str(now.day) + \
+                      str(now.hour) + str(now.minute) + str(now.second) + \
+                      str(now.microsecond)
+    return datetime_string
+
+def get_news_image_path(instance, filename):
+    path_first_component = 'news/'
+    ext = filename.split('.')[-1]
+    file_name = 'news_' + str(instance.id) + str('_favicon_') + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
 
 class News(BaseModel):
     """
@@ -83,6 +97,8 @@ class News(BaseModel):
     number_of_dislikes = models.IntegerField(default=0)
     number_of_views = models.IntegerField(default=0)
     display_order = models.IntegerField(default=0)
+    image = models.ImageField(blank=True, null=True, upload_to=get_news_image_path)
+    identifier = models.IntegerField(null=True, blank=True, unique=True)
 
     class Meta:
         ordering = ('created_at',)
@@ -194,7 +210,7 @@ class FootBallMatchDetails(BaseModel):
     match_status_text = models.CharField(max_length=200, null=True, blank=True)
     match_facts = models.TextField(null=True, blank=True)
     match_description = models.TextField(null=True, blank=True)
-    match_series = models.ForeignKey("MatchSeries", on_delete=models.CASCADE, related_name='matches', )
+    match_series = models.ForeignKey("MatchSeries", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
 
     venue = models.TextField()
     postponed_date = models.DateField(null=True, blank=True)
@@ -210,13 +226,13 @@ class FootBallMatchDetails(BaseModel):
     team_two_score = models.IntegerField(default=0)
 
     should_show_on_home_page = models.BooleanField(default=False)
-    series = models.ForeignKey("SportsTeam", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
+    identifier = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         ordering = ('created_at',)
 
     def __str__(self):
-        return str(self.id) + str(" ") + str(self.series.display_name)
+        return str(self.id) + str(" ") + str(self.match_series.display_name)
 
 
 class FootballMatchCommentary(BaseModel):

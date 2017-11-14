@@ -43,8 +43,8 @@ def validate_request(expected_params, request_params):
         type = field['type'] if 'type' in field else None
         model = field['model'] if 'model' in field else None
 
-        if name in request_params and field['type'] == str and isinstance(request_params[name], unicode):
-            request_params[name] = request_params[name].encode('ascii', 'replace')
+        if name in request_params and field['type'] == str and not isinstance(request_params[name], str) and isinstance(request_params[name], unicode):
+            request_params[name] = str(request_params[name].encode('ascii', 'replace'))
 
         field_errors = []
 

@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -40,7 +39,6 @@ CORS_ALLOW_HEADERS = (
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'api.apps.ApiConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MalayalamSports.wsgi.application'
 
-
 # heroku database
 
 
@@ -105,7 +103,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 import dj_database_url
 
@@ -131,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -145,7 +141,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -153,7 +148,6 @@ STATIC_URL = '/static/'
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
-
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
@@ -171,6 +165,28 @@ REST_FRAMEWORK = {
     ),
     # 'PAGE_SIZE': 10,
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
-    'DEFAULT_AUTHENTICATION_CLASSES': []
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'UNICODE_JSON': False,
 
 }
+
+# aws
+AWS_ACCESS_KEY_ID = 'AKIAIMHQAGUP3X35UVPA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'malayalamsports'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+# MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
+# MEDIA_URL = 'media/'
+
+
+
+# AWS_LOCATION = 'static'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'MalayalamSports.storage_backends.MediaStorage'  # <-- here is where we reference it

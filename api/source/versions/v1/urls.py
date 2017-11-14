@@ -1,5 +1,4 @@
 from django.conf.urls import url
-
 from api.source.versions.v1.views.admin_views import *
 from api.source.versions.v1.views.common.common_views import *
 
@@ -42,5 +41,8 @@ urlpatterns = [
     url(r'^guest/news/delete/$', delete_guest_news, name='delete_guest_news'),
     url(r'^guest/news/details/$', guest_news_details, name='guest_news_details'),
     url(r'^guest/news/list/$', list_guest_news, name='list_guest_news'),
+
+    url(r'^match_series/list/$', get_match_series_list, name='get_match_series_list'),
+    url(r'^sport_team/list/$', get_teams_list, name='get_teams_list'),
 
 ]

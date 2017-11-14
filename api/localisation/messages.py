@@ -149,3 +149,11 @@ LIST_GUEST_NEWS_FAILURE = 'Failed to fetch news list'
 # fetch guest trending news
 GUEST_NEWS_DETAILS_FETCH_SUCCESS = 'News details fetched successfully'
 GUEST_NEWS_DETAILS_FETCH_FAILURE = 'Failed to fetch news details'
+
+# teams
+TEAMS_LIST_FETCH_SUCCESS = 'Teams list fetched successfully'
+TEAMS_LIST_FETCH_FAILURE = 'Teams list fetched failed'
+
+# match series
+MATCH_SERIES_FETCH_SUCCESS = 'Match series list fetched successfully'
+MATCH_SERIES_FETCH_FAILURE = 'Match series list fetched failed'

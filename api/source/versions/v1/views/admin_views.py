@@ -4,7 +4,9 @@ from api.decorators import *
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from api.source.versions.v1.services.common.football_match_services import *
 from api.source.versions.v1.services.common.guest_news_service import *
+from api.source.versions.v1.services.common.match_series_service import get_match_series_service
 from api.source.versions.v1.services.common.news_services import *
+from api.source.versions.v1.services.common.team_services import get_teams_service
 
 log = logging.getLogger(constants.LOGGER_NAME)
 
@@ -510,6 +512,56 @@ def guest_news_details(request, params, user_agent):
         _traceback = traceback.format_exc()
         utils.log_request_exception(request=request, params=params, exception=e, traceback=_traceback)
         message = messages.GUEST_NEWS_DETAILS_FETCH_FAILURE
+        error_report = utils.exception_error_dict(message=message, detail=str(e))
+        return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+
+@csrf_exempt
+@api_view(['POST'])
+@extract_request()
+def get_teams_list(request, params, user_agent):
+    try:
+
+        operation = get_teams_service(request, params, user_agent)
+        if operation.status is False:
+            message = messages.TEAMS_LIST_FETCH_FAILURE
+            response_message = utils.error_dict(message=message, detail=operation.message, error_type=operation.type)
+            return error_message(response_message, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+        else:
+            message = messages.TEAMS_LIST_FETCH_SUCCESS
+            return success_response(data=operation.data, message=message, status=status.HTTP_200_OK, request=request)
+
+    except Exception as e:
+
+        _traceback = traceback.format_exc()
+        utils.log_request_exception(request=request, params=params, exception=e, traceback=_traceback)
+        message = messages.TEAMS_LIST_FETCH_FAILURE
+        error_report = utils.exception_error_dict(message=message, detail=str(e))
+        return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+
+@csrf_exempt
+@api_view(['POST'])
+@extract_request()
+def get_match_series_list(request, params, user_agent):
+    try:
+
+        operation = get_match_series_service(request, params, user_agent)
+        if operation.status is False:
+            message = messages.MATCH_SERIES_FETCH_FAILURE
+            response_message = utils.error_dict(message=message, detail=operation.message, error_type=operation.type)
+            return error_message(response_message, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+        else:
+            message = messages.MATCH_SERIES_FETCH_SUCCESS
+            return success_response(data=operation.data, message=message, status=status.HTTP_200_OK, request=request)
+
+    except Exception as e:
+
+        _traceback = traceback.format_exc()
+        utils.log_request_exception(request=request, params=params, exception=e, traceback=_traceback)
+        message = messages.MATCH_SERIES_FETCH_FAILURE
         error_report = utils.exception_error_dict(message=message, detail=str(e))
         return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)
 
