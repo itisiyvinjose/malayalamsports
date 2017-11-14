@@ -37,7 +37,7 @@ CORS_ALLOW_HEADERS = (
     'page',
 )
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
