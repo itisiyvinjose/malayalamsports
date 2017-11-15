@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2085ca87-8bfc-49fd-b480-a38adc99c075" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/guest_news/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/guest_news/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/guest_news/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/news/1.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/ATK.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/Bengaluru_FC.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/Delhi_Dynamos.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/FC Pune city.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/FC_GOA.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/Jamshedpur.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/Kerala_Blasters.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/North_East.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/chennaiyin_fc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/mumbai_city_FC.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seed_guest_news.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/guest_news.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/migrations/0002_news_thumbnail_image.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/migrations/0003_auto_20171114_1833.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/migrations/0004_guestnews_identifier.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/source/versions/v1/views/common/upload_views.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/news_1_favicon_2017111318471373888.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/news_1_favicon_20171113184817539615.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/news/news_1_favicon_20171113184837696056.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/news/news_1_favicon_20171113184452474379.png" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/news/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/news/news_1_favicon_2017111318461156162.png" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/teams/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MalayalamSports/settings.py" afterPath="$PROJECT_DIR$/MalayalamSports/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/admin.py" afterPath="$PROJECT_DIR$/api/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/data_seed/seed_isl_teams.py" afterPath="$PROJECT_DIR$/api/data_seed/seed_isl_teams.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/data_seed/seed_news.py" afterPath="$PROJECT_DIR$/api/data_seed/seed_news.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/data_seed/seeding_assets/isl_teams.json" afterPath="$PROJECT_DIR$/api/data_seed/seeding_assets/isl_teams.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/localisation/constants.py" afterPath="$PROJECT_DIR$/api/localisation/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/localisation/messages.py" afterPath="$PROJECT_DIR$/api/localisation/messages.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/management/commands/seed_data.py" afterPath="$PROJECT_DIR$/api/management/commands/seed_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.py" afterPath="$PROJECT_DIR$/api/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/serializers/guest_news_serializers.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/serializers/guest_news_serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/serializers/news_serializers.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/serializers/news_serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/serializers/sports_team_serializers.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/serializers/sports_team_serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/services/common/guest_news_service.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/services/common/guest_news_service.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/services/common/news_services.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/services/common/news_services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/services/common/team_services.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/services/common/team_services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/urls.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,7 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -83,6 +42,16 @@
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1418">
+              <caret line="110" column="2" lean-forward="false" selection-start-line="110" selection-start-column="2" selection-end-line="115" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,8 +140,8 @@
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/team_services.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/guest_news_service.py" />
         <option value="$PROJECT_DIR$/api/models.py" />
-        <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
         <option value="$PROJECT_DIR$/api/admin.py" />
+        <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
       </list>
     </option>
   </component>
@@ -337,9 +306,9 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45378152" sideWeight="0.4974359" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47759104" sideWeight="0.4974359" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39915967" sideWeight="0.4974359" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39915967" sideWeight="0.4974359" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -846,14 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="163" column="37" lean-forward="false" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
@@ -871,6 +832,14 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1418">
+          <caret line="110" column="2" lean-forward="false" selection-start-line="110" selection-start-column="2" selection-end-line="115" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
