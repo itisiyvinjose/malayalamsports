@@ -141,3 +141,30 @@ def get_trending_news_service(request, params, user_agent):
     news = News.objects.filter(is_active=True, is_trending=True).order_by('-trend_scale')
     data = NewsListSerializer(news, many=True).data
     return result(status=True, message=None, data=data, type=None)
+
+
+def upload_news_image_service(request, params, user_agent):
+
+    if 'news_id' in params:
+        news_id = int(params['news_id'])
+        try:
+            news = News.objects.get(id=news_id)
+            if 'news_image' in request.FILES:
+                image = request.FILES['news_image']
+                news.image = image
+                news.save()
+                data = NewsListSerializer(news).data
+                return result(status=True, message=None, data=data, type=None)
+            else:
+                message = '\'news_image\' field is required'
+
+        except News.DoesNotExist:
+            message = 'News with id ' + str(news_id) + ' does not exist'
+    else:
+        message = {
+            "news_id": [
+                "This field is required"
+            ]
+        }
+
+    return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)

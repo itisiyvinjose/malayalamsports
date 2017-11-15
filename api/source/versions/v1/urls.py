@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from api.source.versions.v1.views.admin_views import *
 from api.source.versions.v1.views.common.common_views import *
+from api.source.versions.v1.views.common.upload_views import *
 
 urlpatterns = [
 
@@ -44,5 +45,9 @@ urlpatterns = [
 
     url(r'^match_series/list/$', get_match_series_list, name='get_match_series_list'),
     url(r'^sport_team/list/$', get_teams_list, name='get_teams_list'),
+
+    url(r'^sport_team/logo/$', upload_team_logo, name='upload_team_logo'),
+    url(r'^news/image/$', upload_news_image, name='upload_news_image'),
+    url(r'^guest_news/image/$', upload_guest_news_image, name='upload_guest_news_image'),
 
 ]

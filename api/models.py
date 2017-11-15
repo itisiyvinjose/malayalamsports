@@ -1,10 +1,16 @@
 import json
+from io import BytesIO
 
 import bcrypt
+import os
+from PIL import Image
 from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
 from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
+
+from api.localisation import constants
 from api.localisation.constants import *
 
 
@@ -71,7 +77,14 @@ def get_current_datetime_info():
 def get_news_image_path(instance, filename):
     path_first_component = 'news/'
     ext = filename.split('.')[-1]
-    file_name = 'news_' + str(instance.id) + str('_favicon_') + get_current_datetime_info() + str('.') + ext
+    file_name = 'news_' + str(instance.id) + str('_') + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+def get_news_thumbnail_image_path(instance, filename, extension):
+    path_first_component = 'news/'
+    ext = filename.split('.')[-1]
+    file_name = 'news_' + str(instance.id) + "_thumbnail_" + get_current_datetime_info() + str('.') + extension
     full_path = path_first_component + file_name
     return full_path
 
@@ -98,6 +111,7 @@ class News(BaseModel):
     number_of_views = models.IntegerField(default=0)
     display_order = models.IntegerField(default=0)
     image = models.ImageField(blank=True, null=True, upload_to=get_news_image_path)
+    thumbnail_image = models.ImageField(blank=True, null=True)
     identifier = models.IntegerField(null=True, blank=True, unique=True)
 
     class Meta:
@@ -105,6 +119,67 @@ class News(BaseModel):
 
     def __str__(self):
         return str(self.id) + str(" ") + str(self.title)
+
+    def make_thumbnail(self):
+
+        image = Image.open(self.image)
+        image.thumbnail(constants.THUMB_SIZE, Image.ANTIALIAS)
+
+        thumb_name, thumb_extension = os.path.splitext(self.image.name)
+        print("IMAGE name:" + self.image.name)
+        print('\n\n')
+        thumb_extension = thumb_extension.lower()
+
+        thumb_filename = thumb_name + '_thumb_' + thumb_extension
+
+        if thumb_extension in ['.jpg', '.jpeg']:
+            FTYPE = 'JPEG'
+        elif thumb_extension == '.gif':
+            FTYPE = 'GIF'
+        elif thumb_extension == '.png':
+            FTYPE = 'PNG'
+        else:
+            return False  # Unrecognized file type
+
+        # Save thumbnail to in-memory file as StringIO
+        file_path = get_news_thumbnail_image_path(self, self.image.name, FTYPE)
+
+        temp_thumb = BytesIO()
+        image.save(temp_thumb, FTYPE)
+        temp_thumb.seek(0)
+
+        # set save=False, otherwise it will run in an infinite loop
+        # self.thumbnail_image = ContentFile(temp_thumb.read())
+        self.thumbnail_image.save(file_path, ContentFile(temp_thumb.read()), save=False)
+        temp_thumb.close()
+
+        return True
+
+    def save(self, *args, **kwargs):
+
+        if self.id:
+            if self.image:
+                existing_record = News.objects.get(id=self.id)
+                if self.image != existing_record.image:
+                    self.make_thumbnail()
+        elif self.image:
+            self.make_thumbnail()
+        super(News, self).save(*args, **kwargs)
+
+
+def get_guest_news_image_path(instance, filename):
+    path_first_component = 'guest_news/'
+    ext = filename.split('.')[-1]
+    file_name = 'guest_news_' + str(instance.id) + str('_') + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+def get_guest_news_thumbnail_image_path(instance, filename, extension):
+    path_first_component = 'guest_news/'
+    ext = filename.split('.')[-1]
+    file_name = 'guest_news_' + str(instance.id) + "_thumbnail_" + get_current_datetime_info() + str('.') + extension
+    full_path = path_first_component + file_name
+    return full_path
 
 
 class GuestNews(BaseModel):
@@ -123,12 +198,66 @@ class GuestNews(BaseModel):
     number_of_dislikes = models.IntegerField(default=0)
     display_order = models.IntegerField(default=0)
     is_admin_approved = models.BooleanField(default=False)
+    image = models.ImageField(blank=True, null=True, upload_to=get_guest_news_image_path)
+    thumbnail_image = models.ImageField(blank=True, null=True)
+    identifier = models.IntegerField(null=True, blank=True, unique=True)
+
 
     class Meta:
         ordering = ('created_at',)
 
     def __str__(self):
         return str(self.id) + str(" ") + str(self.title)
+
+
+    def make_thumbnail(self):
+
+        image = Image.open(self.image)
+        image.thumbnail(constants.THUMB_SIZE, Image.ANTIALIAS)
+
+        thumb_name, thumb_extension = os.path.splitext(self.image.name)
+        print("IMAGE name:" + self.image.name)
+        print('\n\n')
+        thumb_extension = thumb_extension.lower()
+
+        thumb_filename = thumb_name + '_thumb_' + thumb_extension
+
+        if thumb_extension in ['.jpg', '.jpeg']:
+            FTYPE = 'JPEG'
+        elif thumb_extension == '.gif':
+            FTYPE = 'GIF'
+        elif thumb_extension == '.png':
+            FTYPE = 'PNG'
+        else:
+            return False  # Unrecognized file type
+
+        # Save thumbnail to in-memory file as StringIO
+        file_path = get_guest_news_thumbnail_image_path(self, self.image.name, FTYPE)
+
+        temp_thumb = BytesIO()
+        image.save(temp_thumb, FTYPE)
+        temp_thumb.seek(0)
+
+        # set save=False, otherwise it will run in an infinite loop
+        # self.thumbnail_image = ContentFile(temp_thumb.read())
+        self.thumbnail_image.save(file_path, ContentFile(temp_thumb.read()), save=False)
+        temp_thumb.close()
+
+        return True
+
+    def save(self, *args, **kwargs):
+
+        if self.id:
+            existing_record = GuestNews.objects.get(id=self.id)
+            if self.image:
+                if self.image != existing_record.image:
+
+                    #delete existing images
+                    self.make_thumbnail()
+        elif self.image:
+            self.make_thumbnail()
+
+        super(GuestNews, self).save(*args, **kwargs)
 
 
 class NewsRelationsShip(models.Model):
@@ -243,12 +372,20 @@ class FootballMatchCommentary(BaseModel):
     football_match = models.ForeignKey("FootBallMatchDetails", on_delete=models.CASCADE, related_name='commentaries')
     is_key_event = models.BooleanField(default=False)
 
+def get_team_logo_image_path(instance, filename):
+    path_first_component = 'team_logo/'
+    ext = filename.split('.')[-1]
+    file_name = 'logo_' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
 
 class SportsTeam(BaseModel):
     display_name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
     team_identifier = models.CharField(max_length=200)
+    logo_image = models.ImageField(blank=True, null=True, upload_to=get_team_logo_image_path)
     # TODO: logo
 
     class Meta:

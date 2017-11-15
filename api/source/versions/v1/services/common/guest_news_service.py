@@ -129,3 +129,31 @@ def get_guest_news_details_service(request, params, user_agent):
     else:
         message = validation.errors
         return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)
+
+
+
+def upload_guest_news_image_service(request, params, user_agent):
+
+    if 'guest_news_id' in params:
+        guest_news_id = int(params['guest_news_id'])
+        try:
+            news = GuestNews.objects.get(id=guest_news_id)
+            if 'guest_news_image' in request.FILES and request.FILES['guest_news_image']:
+                image = request.FILES['guest_news_image']
+                news.image = image
+                news.save()
+                data = GuestNewsDetailsSerializer(news).data
+                return result(status=True, message=None, data=data, type=None)
+            else:
+                message = '\'guest_news_image\' field is required'
+
+        except News.DoesNotExist:
+            message = 'Guest news with id ' + str(guest_news_id) + ' does not exist'
+    else:
+        message = {
+            "guest_news_id": [
+                "This field is required"
+            ]
+        }
+
+    return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)

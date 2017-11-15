@@ -31,7 +31,9 @@ class GuestNewsDetailsSerializer(serializers.ModelSerializer):
             'content': instance.content,
             'source': instance.source,
             'title': instance.title,
-            'sport': instance.sport
+            'sport': instance.sport,
+            'thumbnail_url': instance.thumbnail_image.url if instance.thumbnail_image else None,
+            'image_url': instance.image.url if instance.image else None
         }
         return representation
 
@@ -41,3 +43,16 @@ class GuestNewsListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GuestNews
         fields = ('id', 'news_date', 'content', 'source', 'title')
+
+    def to_representation(self, instance):
+        representation = {
+            'id': instance.id,
+            'news_date': instance.news_date,
+            'content': instance.content,
+            'source': instance.source,
+            'title': instance.title,
+            'sport': instance.sport,
+            'thumbnail_url': instance.thumbnail_image.url if instance.thumbnail_image else None,
+            'image_url': instance.image.url if instance.image else None
+        }
+        return representation

@@ -32,6 +32,18 @@ CREATE_FOOTBALL_MATCH_FAILURE = 'Failed to create match'
 UPDATE_FOOTBALL_MATCH_SUCCESS = 'Match updated successfully'
 UPDATE_FOOTBALL_MATCH_FAILURE = 'Failed to update match'
 
+# team logo update
+TEAM_LOGO_UPDATE_SUCCESS = 'Team logo updated successfully'
+TEAM_LOGO_UPDATE_FAILURE = 'Failed to update team logo'
+
+# news image update
+NEWS_IMAGE_UPDATE_SUCCESS = 'News image updated successfully'
+NEWS_IMAGE_UPDATE_FAILURE = 'Failed to update news image'
+
+# team logo update
+GUEST_NEWS_IMAGE_UPDATE_SUCCESS = 'Guest news image updated successfully'
+GUEST_NEWS_IMAGE_UPDATE_FAILURE = 'Failed to update guest news image'
+
 
 # delete football match
 DELETE_FOOTBALL_MATCH_SUCCESS = 'Match deleted successfully'

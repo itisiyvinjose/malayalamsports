@@ -1,4 +1,4 @@
-from api.data_seed import seed_isl_teams, seed_football_match_series, seed_news, seed_match_series
+from api.data_seed import seed_isl_teams, seed_football_match_series, seed_news, seed_match_series, seed_guest_news
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
@@ -21,3 +21,7 @@ class Command(BaseCommand):
 
         seed_match_series.seed_data()
         self.stdout.write(self.style.SUCCESS('Sports Match series seed completed'))
+
+        seed_guest_news.seed_data()
+        self.stdout.write(self.style.SUCCESS('Guest news seed completed'))
+
