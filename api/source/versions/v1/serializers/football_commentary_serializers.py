@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import FootballMatchCommentary, FootBallMatchDetails
+from api.models import FootballMatchCommentary, FootBallMatchDetails, CommentaryTagImage
 
 
 class FootballMatchCommentarySerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class FootballMatchCommentarySerializer(serializers.ModelSerializer):
     class Meta:
         model = FootballMatchCommentary
         fields = (
-            'match_id', 'commentary_heading', 'commentary_content', 'is_key_event', 'current_play_time_status')
+            'match_id', 'commentary_heading', 'commentary_content', 'is_key_event', 'current_play_time_status', 'tag')
 
     def validate_match_id(self, match_id):
         if FootBallMatchDetails.objects.filter(is_active=True, id=match_id).exists():
@@ -29,6 +29,9 @@ class FootballMatchCommentarySerializer(serializers.ModelSerializer):
 
         if 'current_play_time_status' in validated_data:
             instance.current_play_time_status = validated_data['current_play_time_status']
+
+        if 'tag' in validated_data and validated_data['tag']:
+            instance.tag = validated_data['tag']
 
         instance.save()
         return instance
@@ -58,8 +61,32 @@ class FootballMatchCommentaryUpdateSerializer(serializers.ModelSerializer):
 
 
 class FootballMatchCommentaryDetailsSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = FootballMatchCommentary
         fields = (
             'id', 'commentary_heading', 'commentary_content', 'is_key_event', 'current_play_time_status',
-            'football_match', 'created_at')
+            'football_match', 'created_at', 'tag')
+
+    @staticmethod
+    def get_tag_image(instance):
+        if instance.tag:
+            return CommentaryTagImage.objects.get(tag=instance.tag).image.url
+        return None
+
+
+    def to_representation(self, instance):
+
+        representation = {
+            'id': instance.id,
+            'commentary_heading': instance.commentary_heading,
+            'commentary_content': instance.commentary_content,
+            'is_key_event': instance.is_key_event,
+            'current_play_time_status': instance.current_play_time_status,
+            'football_match': instance.football_match.id,
+            'created_at': instance.created_at,
+            'tag': instance.tag,
+            'tag_image_url': self.get_tag_image(instance),
+        }
+
+        return representation

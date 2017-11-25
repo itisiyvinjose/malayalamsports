@@ -407,3 +407,59 @@ def list_football_match_player_service(request, params, user_agent):
     return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)
 
 
+
+def upload_match_line_up_image_service(request, params, user_agent):
+
+    if 'match_id' in params:
+        match_id = int(params['match_id'])
+        try:
+            match = FootBallMatchDetails.objects.get(id=match_id)
+            if 'image' in request.FILES and request.FILES['image']:
+                image = request.FILES['image']
+                match.lineup_image = image
+                match.save()
+                data = FootBallMatchListSerializer(match).data
+                return result(status=True, message=None, data=data, type=None)
+            else:
+                message = '\'image\' field is required'
+
+        except FootBallMatchDetails.DoesNotExist:
+            message = 'FootBallMatchDetails with id ' + str(match_id) + ' does not exist'
+    else:
+        message = {
+            "match_id": [
+                "This field is required"
+            ]
+        }
+
+    return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)
+
+def get_upcoming_matches_service(request, params, user_agent):
+
+    upcoming_matches = list()
+
+    if FootBallMatchDetails.objects.filter(should_show_on_home_page=True).exists():
+
+        reference_match = FootBallMatchDetails.objects.get(should_show_on_home_page=True)
+        reference_date  = reference_match.match_starting_date
+
+        upcoming_matches = FootBallMatchDetails.objects.filter(is_active=True, match_starting_date__gt=reference_date).all().order_by('match_starting_date')
+
+    data = FootBallMatchListSerializer(upcoming_matches, many=True).data
+    return result(status=True, message=None, data=data, type=None)
+
+
+
+def get_previous_matches_service(request, params, user_agent):
+
+    upcoming_matches = list()
+
+    if FootBallMatchDetails.objects.filter(should_show_on_home_page=True).exists():
+
+        reference_match = FootBallMatchDetails.objects.get(should_show_on_home_page=True)
+        reference_date  = reference_match.match_starting_date
+
+        upcoming_matches = FootBallMatchDetails.objects.filter(is_active=True, match_starting_date__lt=reference_date).all().order_by('-match_starting_date')
+
+    data = FootBallMatchListSerializer(upcoming_matches, many=True).data
+    return result(status=True, message=None, data=data, type=None)

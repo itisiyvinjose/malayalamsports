@@ -260,3 +260,53 @@ def list_football_match_player(request, params, user_agent):
         message = messages.LIST_MATCH_PLAYER_FAILURE
         error_report = utils.exception_error_dict(message=message, detail=str(e))
         return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+
+@csrf_exempt
+@api_view(['GET'])
+@extract_request()
+def get_upcoming_matches(request, params, user_agent):
+    try:
+
+        operation = get_upcoming_matches_service(request, params, user_agent)
+        if operation.status is False:
+            message = messages.MATCH_LIST_FETCH_FAILURE
+            response_message = utils.error_dict(message=message, detail=operation.message, error_type=operation.type)
+            return error_message(response_message, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+        else:
+            message = messages.MATCH_LIST_FETCH_SUCCESS
+            return success_response(data=operation.data, message=message, status=status.HTTP_200_OK, request=request)
+
+    except Exception as e:
+
+        _traceback = traceback.format_exc()
+        utils.log_request_exception(request=request, params=params, exception=e, traceback=_traceback)
+        message = messages.MATCH_LIST_FETCH_FAILURE
+        error_report = utils.exception_error_dict(message=message, detail=str(e))
+        return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+
+@csrf_exempt
+@api_view(['GET'])
+@extract_request()
+def get_previous_match(request, params, user_agent):
+    try:
+
+        operation = get_previous_matches_service(request, params, user_agent)
+        if operation.status is False:
+            message = messages.MATCH_LIST_FETCH_FAILURE
+            response_message = utils.error_dict(message=message, detail=operation.message, error_type=operation.type)
+            return error_message(response_message, status=status.HTTP_400_BAD_REQUEST, request=request)
+
+        else:
+            message = messages.MATCH_LIST_FETCH_SUCCESS
+            return success_response(data=operation.data, message=message, status=status.HTTP_200_OK, request=request)
+
+    except Exception as e:
+
+        _traceback = traceback.format_exc()
+        utils.log_request_exception(request=request, params=params, exception=e, traceback=_traceback)
+        message = messages.MATCH_LIST_FETCH_FAILURE
+        error_report = utils.exception_error_dict(message=message, detail=str(e))
+        return error_message(error_report, status=status.HTTP_400_BAD_REQUEST, request=request)

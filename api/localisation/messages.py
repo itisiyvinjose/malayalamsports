@@ -169,3 +169,17 @@ TEAMS_LIST_FETCH_FAILURE = 'Teams list fetched failed'
 # match series
 MATCH_SERIES_FETCH_SUCCESS = 'Match series list fetched successfully'
 MATCH_SERIES_FETCH_FAILURE = 'Match series list fetched failed'
+
+
+# team logo update
+MATCH_LINEUP_IMAGE_UPDATE_SUCCESS = 'Match line up image updated successfully'
+MATCH_LINEUP_IMAGE_UPDATE_FAILURE = 'Failed to update match line up image'
+
+# team logo update
+MATCH_SERIES_LOGO_IMAGE_UPDATE_SUCCESS = 'Match series image updated successfully'
+MATCH_SERIES_LOGO_IMAGE_UPDATE_FAILURE = 'Failed to update match series image'
+
+
+# team logo update
+MATCH_LIST_FETCH_SUCCESS = 'Match list fetched successfully'
+MATCH_LIST_FETCH_FAILURE = 'Failed to fetch match list'

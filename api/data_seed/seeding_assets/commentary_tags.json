@@ -1,0 +1,22 @@
+[
+  {
+    "tag": "GOAL",
+    "image": "goal.png"
+  },
+  {
+    "tag": "YELLOW_CARD",
+    "image": "yellow_card.png"
+  },
+  {
+    "tag": "RED_CARD",
+    "image": "red_card.png"
+  },
+  {
+    "tag": "SUBSTITUTION",
+    "image": "substitution.png"
+  },
+  {
+    "tag": "EXTRA_MINUTE",
+    "image": "extra_minute.png"
+  }
+]

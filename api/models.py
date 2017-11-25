@@ -66,6 +66,8 @@ class Admin(BaseModel):
         else:
 
             return False
+
+
 def get_current_datetime_info():
     import datetime
     now = datetime.datetime.now()
@@ -74,6 +76,7 @@ def get_current_datetime_info():
                       str(now.microsecond)
     return datetime_string
 
+
 def get_news_image_path(instance, filename):
     path_first_component = 'news/'
     ext = filename.split('.')[-1]
@@ -81,12 +84,14 @@ def get_news_image_path(instance, filename):
     full_path = path_first_component + file_name
     return full_path
 
+
 def get_news_thumbnail_image_path(instance, filename, extension):
     path_first_component = 'news/'
     ext = filename.split('.')[-1]
     file_name = 'news_' + str(instance.id) + "_thumbnail_" + get_current_datetime_info() + str('.') + extension
     full_path = path_first_component + file_name
     return full_path
+
 
 class News(BaseModel):
     """
@@ -105,7 +110,8 @@ class News(BaseModel):
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200)
     is_trending = models.BooleanField(default=False)
     trend_scale = models.IntegerField(default=0)
-    related_news = models.ManyToManyField("self", blank=True, through='NewsRelationsShip', symmetrical=False, related_name='+')
+    related_news = models.ManyToManyField("self", blank=True, through='NewsRelationsShip', symmetrical=False,
+                                          related_name='+')
     number_of_likes = models.IntegerField(default=0)
     number_of_dislikes = models.IntegerField(default=0)
     number_of_views = models.IntegerField(default=0)
@@ -174,6 +180,7 @@ def get_guest_news_image_path(instance, filename):
     full_path = path_first_component + file_name
     return full_path
 
+
 def get_guest_news_thumbnail_image_path(instance, filename, extension):
     path_first_component = 'guest_news/'
     ext = filename.split('.')[-1]
@@ -202,13 +209,11 @@ class GuestNews(BaseModel):
     thumbnail_image = models.ImageField(blank=True, null=True)
     identifier = models.IntegerField(null=True, blank=True, unique=True)
 
-
     class Meta:
         ordering = ('created_at',)
 
     def __str__(self):
         return str(self.id) + str(" ") + str(self.title)
-
 
     def make_thumbnail(self):
 
@@ -251,8 +256,7 @@ class GuestNews(BaseModel):
             existing_record = GuestNews.objects.get(id=self.id)
             if self.image:
                 if self.image != existing_record.image:
-
-                    #delete existing images
+                    # delete existing images
                     self.make_thumbnail()
         elif self.image:
             self.make_thumbnail()
@@ -278,7 +282,6 @@ class NewsTag(BaseModel):
 
     def __str__(self):
         return str(self.tag_name.lower())
-
 
     def save(self, *args, **kwargs):
         self.tag_name = self.tag_name.lower()
@@ -327,6 +330,27 @@ class MatchPlayer(BaseModel):
     position = models.CharField(max_length=200, blank=True, null=True)
     order = models.IntegerField(default=0)
 
+def get_match_team_one_image_path(instance, filename):
+    path_first_component = 'match_lineup_images/'
+    ext = filename.split('.')[-1]
+    file_name = 'team_one_line_up_image_' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+def get_match_team_two_image_path(instance, filename):
+    path_first_component = 'match_lineup_images/'
+    ext = filename.split('.')[-1]
+    file_name = 'team_two_line_up_image_' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+
+def get_match_line_up_image_path(instance, filename):
+    path_first_component = 'match_lineup_images/'
+    ext = filename.split('.')[-1]
+    file_name = 'line_up_image' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
 
 class FootBallMatchDetails(BaseModel):
     match_starting_date = models.DateField(null=True, blank=True, db_index=True)
@@ -339,7 +363,8 @@ class FootBallMatchDetails(BaseModel):
     match_status_text = models.CharField(max_length=200, null=True, blank=True)
     match_facts = models.TextField(null=True, blank=True)
     match_description = models.TextField(null=True, blank=True)
-    match_series = models.ForeignKey("MatchSeries", on_delete=models.CASCADE, related_name='matches', null=True, blank=True)
+    match_series = models.ForeignKey("MatchSeries", on_delete=models.CASCADE, related_name='matches', null=True,
+                                     blank=True)
 
     venue = models.TextField()
     postponed_date = models.DateField(null=True, blank=True)
@@ -356,6 +381,8 @@ class FootBallMatchDetails(BaseModel):
 
     should_show_on_home_page = models.BooleanField(default=False)
     identifier = models.CharField(max_length=100, null=True, blank=True)
+    lineup_image = models.ImageField(blank=True, null=True, upload_to=get_match_line_up_image_path)
+
 
     class Meta:
         ordering = ('created_at',)
@@ -371,6 +398,8 @@ class FootballMatchCommentary(BaseModel):
     commentary_content = models.TextField()
     football_match = models.ForeignKey("FootBallMatchDetails", on_delete=models.CASCADE, related_name='commentaries')
     is_key_event = models.BooleanField(default=False)
+    tag = models.CharField(choices=constants.COMMENTARY_TAGS, max_length=200, null=True, blank=True)
+
 
 def get_team_logo_image_path(instance, filename):
     path_first_component = 'team_logo/'
@@ -386,6 +415,7 @@ class SportsTeam(BaseModel):
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
     team_identifier = models.CharField(max_length=200)
     logo_image = models.ImageField(blank=True, null=True, upload_to=get_team_logo_image_path)
+
     # TODO: logo
 
     class Meta:
@@ -395,6 +425,14 @@ class SportsTeam(BaseModel):
         return str(self.id) + str(" ") + str(self.team_identifier)
 
 
+def get_series_logo_image_path(instance, filename):
+    path_first_component = 'match_series_logo/'
+    ext = filename.split('.')[-1]
+    file_name = 'logo_' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+
 class MatchSeries(BaseModel):
     display_name = models.CharField(max_length=200)
     identifier = models.CharField(max_length=200, unique=True)
@@ -402,10 +440,24 @@ class MatchSeries(BaseModel):
     starting_date = models.DateField(null=True, blank=True)
     ending_date = models.DateField(null=True, blank=True)
     sport = models.CharField(choices=SPORT_CATEGORY, max_length=200, db_index=True)
-
+    logo_image = models.ImageField(blank=True, null=True, upload_to=get_series_logo_image_path)
 
     class Meta:
         ordering = ('display_name',)
 
     def __str__(self):
         return str(self.id) + str(" ") + str(self.identifier)
+
+
+def get_commentary_tag_image_path(instance, filename):
+    path_first_component = 'commentary_tag_images/'
+    ext = filename.split('.')[-1]
+    file_name = 'tag_image' + str(instance.id) + "_" + get_current_datetime_info() + str('.') + ext
+    full_path = path_first_component + file_name
+    return full_path
+
+
+class CommentaryTagImage(BaseModel):
+    tag = models.CharField(choices=constants.COMMENTARY_TAGS, max_length=200, null=True, blank=True, db_index=True)
+    image = models.ImageField(blank=True, null=True, upload_to=get_series_logo_image_path)
+

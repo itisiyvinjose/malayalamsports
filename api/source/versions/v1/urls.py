@@ -50,4 +50,11 @@ urlpatterns = [
     url(r'^news/image/$', upload_news_image, name='upload_news_image'),
     url(r'^guest_news/image/$', upload_guest_news_image, name='upload_guest_news_image'),
 
+
+    url(r'match/football/line_up_image/$', upload_match_lineup_image, name='upload_match_lineup_image'),
+    url(r'^match/series/logo_image/$', upload_match_series_logo_image, name='upload_match_series_logo_image'),
+
+    url(r'match/football/upcoming/list/$', get_upcoming_matches, name='get_upcoming_matches'),
+    url(r'match/football/previous/list/$', get_previous_match, name='get_previous_match'),
+
 ]

@@ -23,3 +23,30 @@ def get_match_series_service(request, params, user_agent):
     else:
         message = validation.errors
     return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)
+
+
+def upload_match_series_logo_image_service(request, params, user_agent):
+
+    if 'series_id' in params:
+        series_id = int(params['series_id'])
+        try:
+            series = MatchSeries.objects.get(id=series_id)
+            if 'image' in request.FILES and request.FILES['image']:
+                image = request.FILES['image']
+                series.logo_image = image
+                series.save()
+                data = MatchSeriesSerializer(series).data
+                return result(status=True, message=None, data=data, type=None)
+            else:
+                message = '\'image\' field is required'
+
+        except MatchSeries.DoesNotExist:
+            message = 'MatchSeries with id ' + str(series_id) + ' does not exist'
+    else:
+        message = {
+            "series_id": [
+                "This field is required"
+            ]
+        }
+
+    return result(status=False, message=message, data=None, type=constants.ERROR_RESPONSE_KEY_VALIDATION)

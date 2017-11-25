@@ -152,7 +152,8 @@ class FootBallMatchListSerializer(serializers.ModelSerializer):
             'team_two': self.get_team_data(instance.team_two),
             'team_one_score': instance.team_one_score,
             'team_two_score': instance.team_two_score,
-            'should_show_on_home_page': instance.should_show_on_home_page
+            'should_show_on_home_page': instance.should_show_on_home_page,
+            'lineup_image': instance.lineup_image.url if instance.lineup_image else None
         }
         return representation
 
@@ -191,7 +192,8 @@ class FootBallMatchDetailsSerializer(serializers.ModelSerializer):
             'team_two_score': instance.team_two_score,
             'should_show_on_home_page': instance.should_show_on_home_page,
             'commentaries': self.get_live_comments(instance),
-            'players': self.get_players_list(instance)
+            'players': self.get_players_list(instance),
+            'line_up_image': instance.lineup_image.url if instance.lineup_image else None
         }
         return representation
 
@@ -218,7 +220,7 @@ class FootBallMatchLiveScoreCommentaryDetailsSerializer(serializers.ModelSeriali
 
     @staticmethod
     def get_live_comments(instance):
-        commentaries = instance.commentaries.all().order_by('-created_at')[0:10]
+        commentaries = instance.commentaries.all().order_by('-created_at')
         data =  FootballMatchCommentaryDetailsSerializer(commentaries, many=True).data
         total_count = instance.commentaries.all().count()
         response = {
@@ -227,6 +229,16 @@ class FootBallMatchLiveScoreCommentaryDetailsSerializer(serializers.ModelSeriali
         }
         return response
 
+    @staticmethod
+    def get_key_comments(instance):
+        commentaries = instance.commentaries.filter(is_key_event=True).all().order_by('-created_at')
+        data =  FootballMatchCommentaryDetailsSerializer(commentaries, many=True).data
+        total_count = instance.commentaries.all().count()
+        response = {
+            "content": data,
+            "total_count": total_count
+        }
+        return response
 
     def to_representation(self, instance):
         representation = {
@@ -235,6 +247,9 @@ class FootBallMatchLiveScoreCommentaryDetailsSerializer(serializers.ModelSeriali
             'team_two_score': instance.team_two_score,
             'match_status': instance.match_status,
             'match_status_text': instance.match_status_text,
-            'commentaries': self.get_live_comments(instance)
+            'commentaries': self.get_live_comments(instance),
+            'key_commentaries': self.get_key_comments(instance),
+            'line_up_image': instance.lineup_image.url if instance.lineup_image else None,
+            'series_image': instance.match_series.logo_image.url if instance.match_series.logo_image else None
         }
         return representation
