@@ -52,6 +52,8 @@ class FootballMatchCommentaryUpdateSerializer(serializers.ModelSerializer):
         instance.is_key_event = validated_data.get('is_key_event', instance.is_key_event)
         instance.current_play_time_status = validated_data.get('current_play_time_status', instance.current_play_time_status)
         instance.commentary_content = validated_data.get('commentary_content', instance.commentary_content)
+        if 'tag' in validated_data and validated_data['tag']:
+            instance.tag = validated_data.get('tag', instance.tag)
         instance.save()
         return instance
 

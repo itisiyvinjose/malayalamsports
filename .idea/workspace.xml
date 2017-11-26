@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2085ca87-8bfc-49fd-b480-a38adc99c075" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="163">
               <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="108" selection-end-column="1" />
               <folding />
             </state>
@@ -104,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="football_commentary_serializers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="football_commentary_serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1147">
-              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+            <state relative-caret-position="426">
+              <caret line="55" column="66" lean-forward="false" selection-start-line="55" selection-start-column="66" selection-end-line="55" selection-end-column="66" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -213,8 +213,8 @@
         <option value="$PROJECT_DIR$/api/data_seed/seed_commentary_tags.py" />
         <option value="$PROJECT_DIR$/api/models.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/serializers/football_match_serializers.py" />
-        <option value="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" />
         <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
+        <option value="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" />
       </list>
     </option>
   </component>
@@ -283,6 +283,36 @@
               <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
+              <item name="malayalamsports" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+              <item name="serializers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="malayalamsports" type="b2602c69:ProjectViewProjectNode" />
@@ -849,16 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1147">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/source/versions/v1/services/base_service.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -913,9 +933,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MalayalamSports/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="163">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="108" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="55" column="66" lean-forward="false" selection-start-line="55" selection-start-column="66" selection-end-line="55" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
