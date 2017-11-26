@@ -45,7 +45,7 @@ class FootballMatchCommentaryUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = FootballMatchCommentary
         fields = (
-             'commentary_heading', 'commentary_content', 'is_key_event', 'current_play_time_status')
+             'commentary_heading', 'commentary_content', 'is_key_event', 'current_play_time_status', 'tag')
 
     def update(self, instance, validated_data):
         instance.commentary_heading = validated_data.get('commentary_heading', instance.commentary_heading)
