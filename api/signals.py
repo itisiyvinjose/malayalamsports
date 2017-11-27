@@ -18,7 +18,7 @@ def post_save_news(sender, created, instance, **kwargs):
 
     # print('finding and updating news relationship')
     if instance.should_show_on_home_page:
-        other_matches = FootBallMatchDetails.objects.filter(should_show_on_home_page=True).all()
+        other_matches = FootBallMatchDetails.objects.filter(should_show_on_home_page=True).exclude(id=instance.id).all()
         for match in other_matches:
             match.should_show_on_home_page = False
             match.save()

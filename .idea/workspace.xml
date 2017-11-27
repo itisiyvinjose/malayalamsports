@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2085ca87-8bfc-49fd-b480-a38adc99c075" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" afterPath="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/signals.py" afterPath="$PROJECT_DIR$/api/signals.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,16 +52,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="match_player_serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/match_player_serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="84" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="football_match_serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/football_match_serializers.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -104,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="football_commentary_serializers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="football_commentary_serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="426">
@@ -112,6 +102,16 @@
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signals.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/signals.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -202,7 +202,6 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/match_series_service.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/views/common/upload_views.py" />
-        <option value="$PROJECT_DIR$/api/signals.py" />
         <option value="$PROJECT_DIR$/api/localisation/messages.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/services/common/football_match_services.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/urls.py" />
@@ -215,6 +214,7 @@
         <option value="$PROJECT_DIR$/api/source/versions/v1/serializers/football_match_serializers.py" />
         <option value="$PROJECT_DIR$/MalayalamSports/settings.py" />
         <option value="$PROJECT_DIR$/api/source/versions/v1/serializers/football_commentary_serializers.py" />
+        <option value="$PROJECT_DIR$/api/signals.py" />
       </list>
     </option>
   </component>
@@ -724,16 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/data_seed/seed_news.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
@@ -946,6 +936,14 @@
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
