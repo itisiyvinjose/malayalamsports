@@ -9,7 +9,7 @@ Django==1.11.3
 django-cors-headers==2.0.2
 django-filter==1.1.0
 django-storages==1.6.5
-djangorestframework==3.7.1
+djangorestframework==3.11.2
 docutils==0.14
 gunicorn==19.7.1
 jmespath==0.9.3
